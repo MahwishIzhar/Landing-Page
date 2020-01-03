@@ -20,22 +20,22 @@ image :require("../../Assets/images/feature-icon-02.svg")},
 description:'Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.' ,
 image :require("../../Assets/images/feature-icon-03.svg")},
 
-{
-    title:'Be Productive',
-description:'Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.',
-image :require("../../Assets/images/feature-icon-04.svg")
-},
+// {
+//     title:'Be Productive',
+// description:'Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.',
+// image :require("../../Assets/images/feature-icon-04.svg")
+// },
 
 
-{
-    title:'Be Productive',
-description:'Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.' ,
-image :require("../../Assets/images/feature-icon-05.svg")},
+// {
+//     title:'Be Productive',
+// description:'Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.' ,
+// image :require("../../Assets/images/feature-icon-05.svg")},
 
-{
-    title:'Be Productive',
-description:'Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.' ,
-image :require("../../Assets/images/feature-icon-06.svg")},
+// {
+//     title:'Be Productive',
+// description:'Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.' ,
+// image :require("../../Assets/images/feature-icon-06.svg")},
 
 
 ]

@@ -1,13 +1,31 @@
 import React from 'react';
 import './App.css';
 import Landingpage from './Components/LandingPage';
+import {  connect } from 'react-redux';
+import Dashboard from './Components/Dashboard';
 
-const App = () => {
+const App = (props) => {
+  console.log(props);
   return (
+    // 
+    
     <div className="App">
-     <Landingpage/>
-    </div>
+      {
+      props.Reducer.check ?
+     <Dashboard/> 
+    :
+     <Landingpage />
+     
+     }
+     </div>
+  
+    // 
   );
 }
 
-export default App;
+const mapStateToProps  = (state) =>
+{
+  return state;
+}
+
+export default connect(mapStateToProps,null)(App);

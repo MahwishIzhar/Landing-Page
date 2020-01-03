@@ -2,8 +2,7 @@ import React from 'react';
 
 const Footer = (props) => {
 
-    let array = ['Contact', 'About us',
-        'FAQ\'s', 'Support']
+    let array = ['Contact', 'About us']
 
     const mappedCard = array.map((value) => {
 

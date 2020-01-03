@@ -14,8 +14,8 @@ const MainBody = () => {
 
             <Services />
             <Pricing />
-            <Contact text = "Still not convinced on buying?"
-            buttonText = "Get in touch"/>
+            {/* <Contact text = "Still not convinced on buying?"
+            buttonText = "Get in touch"/> */}
         </main>
     );
 }
