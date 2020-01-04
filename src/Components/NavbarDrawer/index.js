@@ -73,7 +73,7 @@ const NavbarDrawer = (props) =>
          
           >
       
-            { props.renderDrawer }
+            { props.renderDrawer() }
           </Drawer>
         </Hidden>
         
@@ -86,7 +86,7 @@ const NavbarDrawer = (props) =>
             variant="permanent"
             open
           >
-             {  props.renderDrawer }
+             {  props.renderDrawer() }
          
           </Drawer>
         </Hidden>

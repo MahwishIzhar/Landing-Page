@@ -2,14 +2,14 @@ import React from 'react';
 import Title from '../Title';
 import Services from '../Services';
 import Pricing from '../Pricing';
-import Contact from '../Contact';
+// import Contact from '../Contact';
 
 
 const MainBody = () => {
     return (
         <main>
-            <Title title="Landing template for startups"
-                description="Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever."
+            <Title title="Dwork"
+                description=""
                 buttonText="get started" />
 
             <Services />

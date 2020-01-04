@@ -21,11 +21,11 @@ class Form extends Component {
         return (
             <main className={this.props.content}>
                 <div className={this.props.toolbar} />
-                <div className='tl' >
+                <div  >
                     <Typography paragraph>
                         <div >
-                            <h3 className='b f3'>Home Page / </h3>
-                            <h3>{this.props.name}</h3>
+                            <h3 style={{color: "black", fontWeight: "bold"}}>Home Page / </h3>
+                            <h3 style={{color: "black"}}>{this.props.name}</h3>
                         </div>
                     </Typography>
                     <br></br>

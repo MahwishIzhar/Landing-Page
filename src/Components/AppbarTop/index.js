@@ -74,7 +74,7 @@ const AppbarTop = (props) =>
         <MenuIcon />
       </IconButton>
       <Typography variant="h6" color="inherit" noWrap >
-         Admin DashBoard
+       Dwork
          
       </Typography>
     

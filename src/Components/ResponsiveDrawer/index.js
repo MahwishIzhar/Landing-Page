@@ -107,15 +107,11 @@ class ResponsiveDrawer extends React.Component {
 
   render() {
     const { classes } = this.props;
-    return (
-      (this.props.success === true)
-        ?
-        (
-          <div className={classes.root}>
+    return ( <div className={classes.root}>
             <CssBaseline />
             <AppbarTop classes={this.props} onClickEvent={this.handleDrawerToggle} />
             <NavbarDrawer classes={this.props} Container={this.props.container} openState={this.state.mobileOpen} onCloseDrawer={this.handleDrawerToggle}
-              renderDrawer={this._renderDrawerContents()} />
+              renderDrawer={this._renderDrawerContents} />
             {
               this.state.name !== ''
                 ? <div>
@@ -125,8 +121,7 @@ class ResponsiveDrawer extends React.Component {
                 <HomePage classes={this.props} onClickEvent={this.props.onsignout} />
             }
             }
-    </div>)
-        : null
+   </div>
     );
   }
 }

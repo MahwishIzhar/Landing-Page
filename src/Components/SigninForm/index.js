@@ -9,8 +9,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles from '@material-ui/core/styles/withStyles'
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
+import background from '../../Assets/images/background.PNG'
 
 const styles = theme => ({
   main: {
@@ -54,10 +55,20 @@ const styles = theme => ({
 const SigninForm = (props) =>
 {
 
+  // alert('here')
   const {classes} = props
     return(
+      
+
+               
+					
         <main className={classes.main} >
-        <CssBaseline />
+              {/* <div style={{backgroundImage: `url(${background})`, position:'absolute',
+              zIndex:'-1', width: '700px' , height:'400px'}}></div> */}
+      
+       <CssBaseline />
+      
+       
         <Paper className={classes.paper} >
 
           <Avatar className={classes.avatar}>
@@ -68,7 +79,7 @@ const SigninForm = (props) =>
           </Typography>
           <form className={classes.form}>
              {/* onKeyPress={this.onkey}> */}
-            <FormControl margin="normal" required fullWidth>
+           <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="name">User Name</InputLabel>
               <Input id="name" name="name" autoComplete="name" required="true" autoFocus onChange={props.onEmailChange} />
             </FormControl>
@@ -91,7 +102,9 @@ const SigninForm = (props) =>
             }
           </form>
         </Paper>
+
       </main>
+      
     );
 }
 

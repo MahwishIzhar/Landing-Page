@@ -29,7 +29,7 @@ class Title extends React.Component
 		
 								</div>
 								</div>
-								<div class="hero-figure anime-element">
+								{/* <div class="hero-figure anime-element">
 									<svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
 										<rect width="528" height="396" style={{fill:"transparent"}} />
 									</svg>
@@ -43,7 +43,14 @@ class Title extends React.Component
 									<div class="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
 									<div class="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
 									<div class="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
-								</div>
+								</div> */}
+
+<div className="pricing-tables-wrap animated rotateIn delay-1s" >
+                <div className="pricing-table" style={{marginTop:'300px'}} >
+                   
+						</div>
+						</div>
+
 							</div>
 						</div>
 					</section>

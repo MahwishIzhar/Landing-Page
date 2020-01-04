@@ -11,6 +11,9 @@ import Divider from '@material-ui/core/Divider';
 import AboutUs from '@material-ui/icons/AccountCircleOutlined';
 import Help from '@material-ui/icons/HelpOutline';
 
+
+
+
 class ListElements extends React.Component {
     constructor(props) {
         super();
@@ -21,11 +24,11 @@ class ListElements extends React.Component {
     render() {
         return (
             <List style={{ paddingTop: '0px', paddingBottom: '0px' }}>
-                <ListItem button onClick={() => this.props.handleClick()}>
+                <ListItem button style={{marginLeft:'-10'}} onClick={() => this.props.handleClick()}>
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
-                    <ListItemText inset primary={'Home Page'} />
+                    <ListItemText primary={'Home Page'} />
                     {this.props.homeOPEN ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
                 {

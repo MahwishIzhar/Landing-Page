@@ -2,6 +2,8 @@ import React from 'react';
 import { ToastsStore } from 'react-toasts';
 import ResponsiveDrawer from '../ResponsiveDrawer'
 import SigninForm from '../SigninForm';
+import Routing from '../../App';
+import { Route, Link, BrowserRouter as Router ,Switch} from 'react-router-dom'
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -44,13 +46,17 @@ class SignIn extends React.Component {
         background: "#242830",
         height: '100vh'
       }}>
-        {
+
+
+{this.props.children}
+
+        {/* {
           (this.state.success === false)
             ?
             <SigninForm classes={this.props} onEmailChange={this.onEmail} onPasswordChange={this.onPassword} onSubmit={this.buttonsubmit} state={this.state.failed} />
-            :
+            : 
             <ResponsiveDrawer onsignout={this.onsignout} success={this.state.success} />
-        }
+        } */}
       </div>
     );
   }

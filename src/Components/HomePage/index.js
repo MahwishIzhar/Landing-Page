@@ -57,15 +57,15 @@ const HomePage = (props) => {
     <main className={classes.content} >
       <div className={classes.toolbar} />
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
-        <h5 onClick={props.onClickEvent}
-          style={{ color: '#50C878', textDecoration: 'underline', cursor: 'pointer' }}>
-        Sign Out </h5>
+        <p onClick={props.onClickEvent}
+          style={{ color: '#50C878', textDecoration: 'underline', cursor: 'pointer', fontWeight:'bold' }}>
+        Sign Out </p>
       </div>
       <div style={{ textAlign: 'center' }} >
         <Typography paragraph>
           <div >
             <Spinner />
-            <h3 style={{ color: '#50C878', fontWeight: 'bold' }}> Welcome Admin !</h3>
+            <h5 style={{ color: '#50C878' }}> Welcome To Dwork !</h5>
           </div>
         </Typography>
       </div>
