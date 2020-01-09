@@ -9,7 +9,7 @@ const MainBody = () => {
     return (
         <main>
             <Title title="Dwork"
-                description="A blockchain based freelancing platform,"
+                description="A blockchain based freelancing platform that gives freelancers 100% of what they earn"
                 buttonText="get started" />
 
             <Services />

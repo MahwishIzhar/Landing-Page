@@ -12,13 +12,13 @@ return(
     <div class="container-sm">
         <div class="pricing-inner section-inner">
             <PricingHeading title = "Unlimited for all"  
-            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut ad quis nostrud."/>
+            description = "Dwork does not take any commision from client or freelancers. Only the amount of gas fee is deducted for the completion of transaction"/>
             
             <div class="pricing-tables-wrap">
                 <div class="pricing-table">
                     <div class="pricing-table-inner is-revealing">
-                        <PricingCard sign = "$" money = "49" month = "/month" description = "What you will get" />
-                        <PricingButton title = "Pre order now"/>
+                        <PricingCard sign = "Gwit" money = "2" month = "/transaction" description = "What you will get" />
+                        {/* <PricingButton title = "Pre order now"/> */}
                     </div>
                 </div>
             </div>

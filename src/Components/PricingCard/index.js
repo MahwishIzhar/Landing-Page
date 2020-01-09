@@ -3,8 +3,8 @@ import React from 'react';
 const PricingCard = (props) => {
 
 
-    let array = ['Lorem ipsum dolor sit nisi', 'Lorem ipsum dolor sit nisi',
-        'Lorem ipsum dolor sit nisi', 'Lorem ipsum dolor sit nisi']
+    let array = ['Become a freelancer or client', 'Post or find jobs',
+        'Create invoices after successful completion of project', 'Send feedback about client or freelancer']
 
     const mappedCard = array.map((value) => {
 
