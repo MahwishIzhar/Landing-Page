@@ -3,7 +3,7 @@ import './App.css';
 import './Animate.css'
 import Landingpage from './Components/LandingPage';
 import {  connect } from 'react-redux';
-import { Route, Link, BrowserRouter as Router ,Switch} from 'react-router-dom'
+import { Route, Link, HashRouter as Router ,Switch} from 'react-router-dom'
 import Dashboard from './Components/Dashboard';
 import SigninForm from './Components/SigninForm';
 import ResponsiveDrawer from './Components/ResponsiveDrawer';
@@ -14,7 +14,7 @@ import ResponsiveDrawer from './Components/ResponsiveDrawer';
 
 const Routing =()=>{ 
  
-  return (<Router >
+  return (<Router basename="/" >
     <Switch>
       <Route exact path = "/"  component = {Landingpage}/> 
       <Route exact path = "/dwork"  component = {Landingpage}/>
