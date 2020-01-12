@@ -9,7 +9,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     display: 'flex',
-    background:'white',
+    background:'#cccc',
     height:'100vh'
   },
   drawer: {
@@ -37,6 +37,7 @@ const styles = theme => ({
   drawerPaper: {
     width: drawerWidth,
     backgroundColor:'#242830'
+    
    
   },
   content: {
@@ -44,7 +45,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
     display:'block',
     justifyContent:'flex-start',
-    background:'white',
+    background:'#cccc',
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,

@@ -1,74 +1,95 @@
 import React from 'react'
 import './style.css'
+import { Container, Row, Col } from 'react-grid-system';
+
 
 class AuthCard extends React.Component {
 
     state = {
-      toggle: false
+        toggle: true
     }
-
 
     _setToggle = () => {
         this.setState({ toggle: !this.state.toggle })
     }
 
-    render() {
-        return (<div class="login-wrap">
-            <div class="login-html">
-                <input id="tab-1" type="radio" name="tab" class="sign-in" checked /><label for="tab-1" class="tab">Sign In</label>
-                <input id="tab-2" type="radio" name="tab" class="sign-up" /><label for="tab-2" class="tab">Sign Up</label>
-                <div class="login-form">
-                    <div class="sign-in-htm">
-                        <div class="group">
-                            <label for="user" class="label">Username</label>
-                            <input id="user" type="text" class="input" onChange={(e) => this.props.onChangeLogin(e, 'login_email')} value={this.props.login_details.login_email} />
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Password</label>
-                            <input id="pass" type="password" class="input" data-type="password" onChange={(e) => this.props.onChangeLogin(e, 'login_password')} value={this.props.login_details.login_password} />
-                        </div>
-                        {/* <div class="group">
-                        <input id="check" type="checkbox" class="check" checked/>
-                        <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                    </div> */}
-                        <div class="group">
-                            <input type="submit" class="button" value="Sign In" onClick={this.props.onSignin} />
-                        </div>
-                        <div class="hr"></div>
-                        {/* <div class="foot-lnk">
-                        <a href="#forgot">Forgot Password?</a>
-                    </div> */}
-                    </div>
+    _handleKeyDown = (e, field) => {
+        if (e.key === 'Enter') {
+          if( field == 'signin' )
+            {
+                this.props.onLogin()
+            }
+          if( field == 'signup' ){
+              this.props.onSignup()
+          }
+        }
+      }
 
-                    <div class="sign-up-htm">
-                        <div class="group">
-                            <label for="user" class="label">Username</label>
-                            <input id="user" type="text" class="input" onChange={(e) => this.props.onChangeSignup(e, 'signup_username')} value={this.props.signup_details.signup_username} />
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Password</label>
-                            <input id="pass" type="password" class="input" data-type="password" onChange={(e) => this.props.onChangeSignup(e, 'signup_password')} value={this.props.signup_details.signup_password} />
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Repeat Password</label>
-                            <input id="pass" type="password" class="input" data-type="password"
-                                onChange={(e) => this.props.onChangeSignup(e, 'signup_repeatpassword')} value={this.props.signup_details.signup_repeatpassword} />
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Email Address</label>
-                            <input id="pass" type="text" class="input" onChange={(e) => this.props.onChangeSignup(e, 'signup_email')} value={this.props.signup_details.signup_email} />
-                        </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="Sign Up" onClick={this.props.onSignup} />
-                        </div>
-                        <div class="hr"></div>
-                        {/* <div class="foot-lnk">
-                        <label for="tab-1"><a>Already Member?</a></label>
-                    </div> */}
-                    </div>
+    _renderSignUp = () => {
+        return <div className='window animated slideInDown' >
+            <div className='content'>
+                <div className='welcome'>Hello There!</div>
+                <div className='subtitle'>To get started, please sign-up on Dwork </div>
+                <div className='input-fields'>
+                    <input type='email' placeholder='Email' className='input-line full-width'
+                     value = { this.props.signup_details.email } onChange={(e)=>this.props.onChangeSignup(e,'email')} ></input>
+                    <input type='password' placeholder='Password' className='input-line full-width' 
+                    value = { this.props.signup_details.password } onChange={(e)=>this.props.onChangeSignup(e,'password')}></input>
+                    <input type='password' placeholder='Confirm password' className='input-line full-width' 
+                    value = { this.props.signup_details.confirmPassword } onChange={(e)=>this.props.onChangeSignup(e,'confirmPassword')}
+                    onKeyDown={(e)=>this._handleKeyDown(e,'signup')}></input>
                 </div>
+
+                <button className='ghost-round full-width' onClick={()=>this.props.onSignup()}>Sign up</button>
+                <div className='subtitle'>Already a member?</div>
+                <button className='ghost-round full-width' onClick={() => this._setToggle()}>Sign in</button>
             </div>
         </div>
+    }
+
+    _renderSignIn = () => {
+        return <div className='window animated fadeInDown' style={{ height: '450px' }}>
+            <div className='content' >
+            <div className='welcome'>Hello There!</div>
+            <div className='subtitle'>Welcome back on Dwork </div>
+            <div className='input-fields'>
+                <input type='email' placeholder='Email' className='input-line full-width' 
+                value={this.props.login_details.email} onChange={(e) => this.props.onChangeLogin(e,'email')} ></input>
+                <input type='password' placeholder='Password' className='input-line full-width'
+                  value={this.props.login_details.password} onChange={(e) => this.props.onChangeLogin(e,'password')}
+                  onKeyDown={(e)=>this._handleKeyDown(e,'signin')}
+                  ></input>
+
+            </div>
+            <button className='ghost-round full-width' onClick={()=>this.props.onLogin()}>Sign in</button>
+            <div className='subtitle'>Don't have an account?</div>
+            <button className='ghost-round full-width' onClick={() => this._setToggle()} >Create Account</button>
+        </div>
+        </div>
+    }
+
+    render() {
+        return (
+<Container fluid style={{height:'100%'}} >
+    <Row style={{height:'100%',backgroundColor:'#1d2026'}} fluid>
+        <Col lg={3} sm={3} md={3}></Col>
+
+        <Col lg={6} sm={6} md={6}>
+        <div className='container1'>
+
+{
+    this.state.toggle
+        ? this._renderSignIn()
+        : this._renderSignUp()
+}
+
+</div>
+        </Col>
+
+        <Col lg={3} sm={3} md={3}></Col>
+    </Row>
+            
+            </Container>
         );
     }
 

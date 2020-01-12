@@ -28,7 +28,7 @@ class ListElements extends React.Component {
                     <ListItemIcon>
                         <HomeIcon  style= {{color:'white'}}/>
                     </ListItemIcon>
-                    <ListItemText primary={'Home Page'} style= {{color:'white'}}/>
+                    <ListItemText primary={'Home Page'} style= {{color:'white',fontSize:8}}/>
                     {this.props.homeOPEN ? <ExpandLess  style= {{color:'white'}}/> : <ExpandMore style= {{color:'white'}} />}
                 </ListItem>
                 {
@@ -46,7 +46,7 @@ class ListElements extends React.Component {
                                                         : null
                                             }
                                         </ListItemIcon>
-                                        <ListItemText primary={text} style= {{color:'white'}}/>
+                                        <ListItemText primary={text} style= {{color:'white',fontSize:8}}/>
                                     </ListItem>
                                 ))}
                             <Divider />

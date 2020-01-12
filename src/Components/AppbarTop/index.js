@@ -68,7 +68,8 @@ const AppbarTop = (props) =>
       
       }}>
       
-    <Toolbar >
+    <Toolbar style={{justifyContent:'center',
+      alignItems:'center',display:'flex', flexDirection:'row'}} >
       <IconButton
         color="inherit"
         aria-label="Open drawer"
@@ -77,10 +78,7 @@ const AppbarTop = (props) =>
       >
         <MenuIcon />
       </IconButton>
-      <Typography variant="h6" color="inherit" noWrap  style={{background: '-webkit-linear-gradient(midnightblue, rgb(60, 60, 134))',
-      webkitBackgroundKit: 'text',
-      webkitTextFillColor: 'transparent',
-      }}>
+      <Typography variant="h6" color="inherit" noWrap  >
        Dwork
          
       </Typography>

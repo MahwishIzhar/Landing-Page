@@ -20,16 +20,15 @@ class Form extends Component {
     render() {
         return (
             <main className={this.props.content}>
-                <div className={this.props.toolbar} />
-                <div  >
-                    <Typography paragraph>
-                        <div >
-                            <h3 style={{color: "black", fontWeight: "bold"}}>Home Page / </h3>
-                            <h3 style={{color: "black"}}>{this.props.name}</h3>
+                {/* <div className={this.props.toolbar} /> */}
+             
+                        <div style={{display:'flex',flexDirection:'row',
+                        alignItems:'baseline',justifyContent:'center', marginTop:'20px'}} >
+                            <h3 style={{color: "black",fontWeight:300}}><strong>Home Page / </strong></h3>
+                            <h6 style={{color: "black",fontWeight:400}}>{ this.props.name}</h6>
                         </div>
-                    </Typography>
-                    <br></br>
-                </div>
+                  
+          
             </main>
         );
     }

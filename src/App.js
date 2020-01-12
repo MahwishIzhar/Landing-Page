@@ -21,7 +21,7 @@ const Routing = () => {
 
       <Dashboard>
         <Route component={({ match }) => {
-          return <div>
+          return <div style={{height:'100%',width:'100%'}}>
             <Route exact path="/dwork/signin" component={SigninForm} />
             <Route exact path="/dwork/home" component={ResponsiveDrawer}
             // render={(props) => <ResponsiveDrawer {...props} isAuthed={true} />}

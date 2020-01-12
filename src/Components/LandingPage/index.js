@@ -16,7 +16,7 @@ render(props){
 
     return (
 
-        <body class="is-boxed has-animations" >
+        <body class="is-boxed has-animations"  >
             <div class="body-wrap" >
                 <HeaderImage source = {Logo}/>
                 <MainBody/>
