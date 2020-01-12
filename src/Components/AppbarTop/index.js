@@ -62,7 +62,11 @@ const AppbarTop = (props) =>
 
     return (
     
-    <AppBar position="fixed" className={classes.appBar} style={{backgroundColor:'#242830'}}>
+    <AppBar position="fixed" className={classes.appBar} style={{
+      
+      backgroundColor:'#242830'
+      
+      }}>
       
     <Toolbar >
       <IconButton
@@ -73,7 +77,10 @@ const AppbarTop = (props) =>
       >
         <MenuIcon />
       </IconButton>
-      <Typography variant="h6" color="inherit" noWrap >
+      <Typography variant="h6" color="inherit" noWrap  style={{background: '-webkit-linear-gradient(midnightblue, rgb(60, 60, 134))',
+      webkitBackgroundKit: 'text',
+      webkitTextFillColor: 'transparent',
+      }}>
        Dwork
          
       </Typography>

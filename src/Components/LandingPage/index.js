@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './style.css';
 import Logo from '../../Assets/images/logo.svg';
 
@@ -6,7 +6,13 @@ import HeaderImage from '../HeaderImage';
 import MainBody from '../MainBody';
 import Footer from'../Footer';
 
-const Landingpage = () => {
+class Landingpage extends Component {
+
+
+
+
+render(props){
+    console.log('checking props ',props)
 
     return (
 
@@ -19,6 +25,8 @@ const Landingpage = () => {
         </body>
 
     );
+}
+    
 }
 
 export default  Landingpage;

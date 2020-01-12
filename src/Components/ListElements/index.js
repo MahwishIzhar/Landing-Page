@@ -26,10 +26,10 @@ class ListElements extends React.Component {
             <List style={{ paddingTop: '0px', paddingBottom: '0px' }}>
                 <ListItem button style={{marginLeft:'-10'}} onClick={() => this.props.handleClick()}>
                     <ListItemIcon>
-                        <HomeIcon />
+                        <HomeIcon  style= {{color:'white'}}/>
                     </ListItemIcon>
-                    <ListItemText primary={'Home Page'} />
-                    {this.props.homeOPEN ? <ExpandLess /> : <ExpandMore />}
+                    <ListItemText primary={'Home Page'} style= {{color:'white'}}/>
+                    {this.props.homeOPEN ? <ExpandLess  style= {{color:'white'}}/> : <ExpandMore style= {{color:'white'}} />}
                 </ListItem>
                 {
                     <Collapse in={this.props.homeOPEN} timeout="auto" unmountOnExit>
@@ -39,14 +39,14 @@ class ListElements extends React.Component {
                                 .map((text, index) => (
                                     <ListItem button key={text}
                                         className={this.props.nested} onClick={() => this.props.clickFunction(text)}>
-                                        <ListItemIcon>
+                                        <ListItemIcon style= {{color:'white'}}>
                                             {
                                                 (index === 0) ? <AboutUs />
                                                     : (index === 1) ? <Help />
                                                         : null
                                             }
                                         </ListItemIcon>
-                                        <ListItemText primary={text} />
+                                        <ListItemText primary={text} style= {{color:'white'}}/>
                                     </ListItem>
                                 ))}
                             <Divider />

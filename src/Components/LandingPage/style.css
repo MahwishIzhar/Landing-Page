@@ -1552,7 +1552,8 @@ label {
     height: 26.01%;
     background: #0270D7;
     -webkit-transform: rotateZ(-22deg);
-    transform: rotateZ(-22deg)
+    transform: rotateZ(-22deg);
+
 }
 
 .hero-figure-box-08::before {

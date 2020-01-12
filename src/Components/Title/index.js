@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Actions from '../../Redux/Actions';
+// import Actions from '../../Redux/Actions';
+
+import { withRouter } from "react-router";
 
 class Title extends React.Component
 {
@@ -10,7 +12,9 @@ class Title extends React.Component
 
 
 	_onButtonClick = () => {
-		this.props.show_dashboard()
+		console.log(this.props);
+		
+		this.props.history.push('/dwork/signin')
 	}
 
 	render(){
@@ -60,16 +64,18 @@ class Title extends React.Component
 
 }
 
-const mapStateToProps = ( state ) => {
-	return state;
-}
+// const mapStateToProps = ( state ) => {
+// 	return state;
+// }
 
-const mapDispatchToProps = ( dispatch ) => {
-	return {
-		// set_name: ( name ) => Actions.set_name(name)
-show_dashboard : () => dispatch(Actions.show_dashboard())
+// const mapDispatchToProps = ( dispatch ) => {
+// 	return {
+// 		// set_name: ( name ) => Actions.set_name(name)
+// show_dashboard : () => dispatch(Actions.show_dashboard())
 
-	}
-}
+// 	}
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Title);
+// export default connect(mapStateToProps,mapDispatchToProps)(Title);
+
+export default withRouter(Title)
