@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/Landing-Page/static/css/main.ccafcabe.chunk.css",
-    "main.js": "/Landing-Page/static/js/main.1ac89074.chunk.js",
-    "main.js.map": "/Landing-Page/static/js/main.1ac89074.chunk.js.map",
+    "main.css": "/Landing-Page/static/css/main.e2a23203.chunk.css",
+    "main.js": "/Landing-Page/static/js/main.02c7a11f.chunk.js",
+    "main.js.map": "/Landing-Page/static/js/main.02c7a11f.chunk.js.map",
     "runtime-main.js": "/Landing-Page/static/js/runtime-main.40e0f74f.js",
     "runtime-main.js.map": "/Landing-Page/static/js/runtime-main.40e0f74f.js.map",
-    "static/js/2.66a48cd5.chunk.js": "/Landing-Page/static/js/2.66a48cd5.chunk.js",
-    "static/js/2.66a48cd5.chunk.js.map": "/Landing-Page/static/js/2.66a48cd5.chunk.js.map",
+    "static/js/2.acea95df.chunk.js": "/Landing-Page/static/js/2.acea95df.chunk.js",
+    "static/js/2.acea95df.chunk.js.map": "/Landing-Page/static/js/2.acea95df.chunk.js.map",
     "index.html": "/Landing-Page/index.html",
-    "precache-manifest.b78b03f79245e1b637ad33e376358904.js": "/Landing-Page/precache-manifest.b78b03f79245e1b637ad33e376358904.js",
+    "precache-manifest.172b67bd6bc37b1728ee53e9f461b2a9.js": "/Landing-Page/precache-manifest.172b67bd6bc37b1728ee53e9f461b2a9.js",
     "service-worker.js": "/Landing-Page/service-worker.js",
-    "static/css/main.ccafcabe.chunk.css.map": "/Landing-Page/static/css/main.ccafcabe.chunk.css.map",
-    "static/js/2.66a48cd5.chunk.js.LICENSE": "/Landing-Page/static/js/2.66a48cd5.chunk.js.LICENSE",
-    "static/media/background.PNG": "/Landing-Page/static/media/background.8d714a09.PNG",
+    "static/css/main.e2a23203.chunk.css.map": "/Landing-Page/static/css/main.e2a23203.chunk.css.map",
+    "static/js/2.acea95df.chunk.js.LICENSE": "/Landing-Page/static/js/2.acea95df.chunk.js.LICENSE",
     "static/media/style.css": "/Landing-Page/static/media/pricing-illustration.f5bcc1cc.svg",
     "static/media/feature-icon-01.svg": "/Landing-Page/static/media/feature-icon-01.851f0815.svg",
     "static/media/feature-icon-02.svg": "/Landing-Page/static/media/feature-icon-02.7e409417.svg",
@@ -21,8 +20,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.40e0f74f.js",
-    "static/js/2.66a48cd5.chunk.js",
-    "static/css/main.ccafcabe.chunk.css",
-    "static/js/main.1ac89074.chunk.js"
+    "static/js/2.acea95df.chunk.js",
+    "static/css/main.e2a23203.chunk.css",
+    "static/js/main.02c7a11f.chunk.js"
   ]
 }
