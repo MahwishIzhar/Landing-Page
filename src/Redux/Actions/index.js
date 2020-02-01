@@ -1,21 +1,10 @@
+import { Api } from "../../API"
 
 const Actions = {
 
-set_name : (newName) => {
-    return {
-        type: 'SET_NAME',
-        payload: newName
-    }
+signup : ( data ) => {
+    Api.post( data, '/signup')
 },
-
-show_dashboard: () =>
-{
-
-    return {
-        type: 'show_dashboard',
-
-    }
-}
 
 }
 

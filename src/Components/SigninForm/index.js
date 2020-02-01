@@ -9,15 +9,24 @@ class SigninForm extends React.Component {
     super()
     this.state = {
       flag: false,
+      accountlist : ['Freelancer','Employer'],
+
       login_details: {
         email: '',
         password: '',
+
       },
 
       signup_details: {
+        firstName:'',
+        lastName:'',
+        email: '',
+        userName:'',
         password: '',
         confirmPassword: '',
-        email: '',
+        accountType:''
+        
+
       }
     }
 
@@ -36,7 +45,13 @@ class SigninForm extends React.Component {
 
   onChangeSignup = (event, field) => {
 
-    let text = event.target.value
+let text = ''
+
+    if(field=='accountType')
+     text = event
+     else
+     text = event.target.value
+
     this.setState(prevState => ({
       signup_details: {
         ...prevState.signup_details,
@@ -73,13 +88,21 @@ class SigninForm extends React.Component {
   }
 
   onSignup = () => {
+
+    if(this.state.signup_details.firstName.trim() == '')
+    return ToastsStore.error('Please fill out first name field')
+
+    if(this.state.signup_details.lastName.trim() == '')
+    return ToastsStore.error('Please fill out last name field')
   
     if (this.state.signup_details.email.trim() == '')
     return ToastsStore.error('Please fill out email field')
 
-
   if ( !this.testEmail.test(this.state.signup_details.email))
     return ToastsStore.error('Please enter a valid email address')
+
+    if (this.state.signup_details.userName.trim() == '')
+    return ToastsStore.error('Please fill out username field')
 
   if (this.state.signup_details.password.trim() == '')
     return ToastsStore.error('Please fill out password field')
@@ -93,19 +116,38 @@ class SigninForm extends React.Component {
   if (this.state.signup_details.confirmPassword != this.state.signup_details.password )
     return ToastsStore.error('Passwords do not match')
 
+    if (this.state.signup_details.accountType.trim() == '')
+    return ToastsStore.error('Please select an account type')
+
+    let signupData = {
+      firstName:this.state.signup_details.firstName,
+      lastName:this.state.signup_details.lastName,
+      email: this.state.signup_details.email,
+      userName:this.state.signup_details.userName,
+      password: this.state.signup_details.password,
+      accountType:this.state.signup_details.accountType
+      
+    }
+
+    console.log(signupData);
   
     this.props.history.push('/dwork/home')
 
   }
 
+  _onSelect = (option) => {
+    console.log('You selected ', option.label)
+ this.onChangeSignup(option.label,'accountType')
+    // this.setState({selected: option})
+  }
 
 
   render() {
     return (
     <div style={{width:'100%',height:'100%'}}><AuthCard
       onLogin={this.onLogin} login_details={this.state.login_details}
-      signup_details={this.state.signup_details} onSignup={this.onSignup}
-      onChangeLogin={this.onChangeLogin} onChangeSignup={this.onChangeSignup}
+      signup_details={this.state.signup_details} onSignup={this.onSignup} accountlist = {this.state.accountlist}
+            onChangeLogin={this.onChangeLogin} onChangeSignup={this.onChangeSignup}  _onSelect = {this._onSelect}
     />
     <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.BOTTOM_CENTER}/>
 
@@ -113,4 +155,13 @@ class SigninForm extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ( state ) => {
+  return state
+}
+ 
+const mapDispatchToProps = ( dispatch ) => {
+
+}
+
 export default SigninForm;

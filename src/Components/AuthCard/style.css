@@ -82,6 +82,8 @@ button:focus {
 .input-line {
   background: none;
   margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   line-height: 2.4em;
   color: #fff;
   font-family: roboto;
@@ -174,7 +176,7 @@ background-color: #1d2026  ;
   flex-flow: column; 
   box-sizing: border-box;
   height: 530px;
-  width: 360px;
+  /* width: 450px; */
   border-radius: 25px;
   /* background: #fff; */
   /* background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat; */
