@@ -19,6 +19,10 @@ export const reducer = (state = INITIAL_STATE, action) => {
             return { ...state, userInfo: action.payload, loading: false }
         }
 
+        case 'UPDATE_USER_INFO': {
+            return { ...state, userInfo: action.payload }
+        }
+
         case 'CLEAR': {
             return { ...state, userInfo: null, loading: false }
         }

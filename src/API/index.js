@@ -19,5 +19,26 @@ export const Api = {
             return error( err ) 
             
         })
+    },
+
+    get: ( data, endPoint, success, error ) => {
+        fetch(`${URL}${endPoint}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data) 
+        })
+        .then( response => response.json())
+        .then( result => { 
+            console.log(result)
+            return success( result )
+        })
+        .catch( err => {
+            console.log(err);
+            
+            return error( err ) 
+            
+        })
     }
 }

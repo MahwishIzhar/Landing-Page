@@ -8,9 +8,9 @@ import HomeIcon from '@material-ui/icons/HomeOutlined';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
-import AboutUs from '@material-ui/icons/AccountCircleOutlined';
+import Profile from '@material-ui/icons/AccountCircleOutlined';
 import Help from '@material-ui/icons/HelpOutline';
-
+import AboutUs from '@material-ui/icons/InfoOutlined';
 
 
 
@@ -24,29 +24,30 @@ class ListElements extends React.Component {
     render() {
         return (
             <List style={{ paddingTop: '0px', paddingBottom: '0px' }}>
-                <ListItem button style={{marginLeft:'-10'}} onClick={() => this.props.handleClick()}>
+                <ListItem button style={{ marginLeft: '-10' }} onClick={() => this.props.handleClick()}>
                     <ListItemIcon>
-                        <HomeIcon  style= {{color:'white'}}/>
+                        <HomeIcon style={{ color: 'white' }} />
                     </ListItemIcon>
-                    <ListItemText primary={'Home Page'} style= {{color:'white',fontSize:8}}/>
-                    {this.props.homeOPEN ? <ExpandLess  style= {{color:'white'}}/> : <ExpandMore style= {{color:'white'}} />}
+                    <ListItemText primary={'Home Page'} style={{ color: 'white', fontSize: 8 }} />
+                    {this.props.homeOPEN ? <ExpandLess style={{ color: 'white' }} /> : <ExpandMore style={{ color: 'white' }} />}
                 </ListItem>
                 {
                     <Collapse in={this.props.homeOPEN} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <Divider />
-                            {['About Us', 'Help']
+                            {['Profile', 'About Us', 'Help']
                                 .map((text, index) => (
                                     <ListItem button key={text}
                                         className={this.props.nested} onClick={() => this.props.clickFunction(text)}>
-                                        <ListItemIcon style= {{color:'white'}}>
+                                        <ListItemIcon style={{ color: 'white' }}>
                                             {
-                                                (index === 0) ? <AboutUs />
-                                                    : (index === 1) ? <Help />
-                                                        : null
+                                                (index === 0) ? <Profile />
+                                                    : (index === 1) ? <AboutUs />
+                                                        : (index === 2) ? <Help />
+                                                            : null
                                             }
                                         </ListItemIcon>
-                                        <ListItemText primary={text} style= {{color:'white',fontSize:8}}/>
+                                        <ListItemText primary={text} style={{ color: 'white', fontSize: 8 }} />
                                     </ListItem>
                                 ))}
                             <Divider />

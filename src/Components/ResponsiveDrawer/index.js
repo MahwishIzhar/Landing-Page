@@ -69,11 +69,12 @@ class ResponsiveDrawer extends React.Component {
   };
 
   componentWillMount(){
-    console.log('******',this.props,ls.get('userInfo'))
+    
     if( !this.props.Reducer.userInfo ){
       this.props.history.push('/dwork/signin')
     }
   }
+ 
 
   handleClick = () => {
     this.setState({ homeOPEN: !this.state.homeOPEN })
@@ -109,10 +110,9 @@ class ResponsiveDrawer extends React.Component {
 
     const { classes } = this.props;
 
-    return <Form content={classes.content} toolbar={classes.toolbar}
-      inputheight={classes.input} homeOPEN={this.state.homeOPEN}
-      name={this.state.name}
-      onsignout={this._onSignOut} />
+    return <Form   inputheight={classes.input} homeOPEN={this.state.homeOPEN}
+          name={this.state.name}
+          onsignout={this._onSignOut} />
   }
  
   _onSignOut = () => {
@@ -133,9 +133,7 @@ class ResponsiveDrawer extends React.Component {
               renderDrawer={this._renderDrawerContents} />
             {
               this.state.name !== ''
-                ? <div>
-                  {this._renderPageContent()}
-                </div>
+                ?  this._renderPageContent() 
                 :
                 <HomePage classes={this.props} username={this.props.Reducer.userInfo.username}  _onSignOut={this._onSignOut} />
             }
@@ -156,9 +154,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    // Signup: (data, success, error) => dispatch(Actions.Signup(data, success, error)),
-    // Login: (data, success, error) => dispatch(Actions.Login(data, success, error)),
+  return { 
     Clear: () => dispatch(Actions.Clear())
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
+import Profile from '../Profile';
 
 class Form extends Component {
     constructor(props) {
@@ -17,10 +18,15 @@ class Form extends Component {
         this.setState({ open: false });
     };
 
+    _renderContent = () => {
+        
+        if(  this.props.name == 'Profile' )
+            return <Profile />
+    }
+
     render() {
         return (
-            <main className={this.props.content}>
-                {/* <div className={this.props.toolbar} /> */}
+            <main style={{paddingTop: '20px'}}  > 
              
                         <div style={{display:'flex',flexDirection:'row',
                         alignItems:'baseline',justifyContent:'center', marginTop:'20px'}} >
@@ -28,7 +34,10 @@ class Form extends Component {
                             <h6 style={{color: "black",fontWeight:400}}>{ this.props.name}</h6>
                         </div>
                   
-          
+                        {
+                            this._renderContent()
+                        }
+
             </main>
         );
     }

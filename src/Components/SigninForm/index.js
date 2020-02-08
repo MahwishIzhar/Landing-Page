@@ -157,7 +157,8 @@ class SigninForm extends React.Component {
       email: this.state.signup_details.email,
       username: this.state.signup_details.userName,
       password: this.state.signup_details.password,
-      account_type: this.state.signup_details.accountType
+      account_type: this.state.signup_details.accountType,
+      accountNo: ''
 
     }
 

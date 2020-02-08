@@ -44,7 +44,34 @@ const Actions = {
 
 
         }
-    }
+    },
+
+    EditProfile: (data, completed, failed) => {
+
+        return dispatch => {
+            dispatch({ type: 'START_LOADING' })
+
+            let userData = {
+                path: 'abc',
+                content: data
+            }
+
+            Api.post(userData, '/editProfile', success => {
+                dispatch({ type: 'STOP_LOADING' })
+                Api.post(data, '/Profile', success => {
+                    dispatch({ type: 'UPDATE_USER_INFO', payload: success.userdata })
+                    
+                }, error => {
+                    
+                })
+                return completed(success)
+            }, error => {
+                dispatch({ type: 'STOP_LOADING' })
+                return failed(error)
+            })
+        }
+    },
+ 
 
 }
 
