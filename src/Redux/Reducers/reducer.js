@@ -1,21 +1,28 @@
 const INITIAL_STATE = {
-    name: 'dwork',
-    check: false
+    loading: false,
+    userInfo: null
 }
 
-export const reducer = ( state = INITIAL_STATE, action ) => {
+export const reducer = (state = INITIAL_STATE, action) => {
 
-    switch( action.type ){
+    switch (action.type) {
 
-        case 'SET_NAME': {
-            return { ...state, name: action.payload }
+        case 'START_LOADING': {
+            return { ...state, loading: true }
         }
 
-        case 'show_dashboard':
-            {
-                console.log('herere')
-return{...state, check: true}
-            }
+        case 'STOP_LOADING': {
+            return { ...state, loading: false }
+        }
+
+        case 'USER_INFO': {
+            return { ...state, userInfo: action.payload, loading: false }
+        }
+
+        case 'CLEAR': {
+            return { ...state, userInfo: null, loading: false }
+        }
+
         default:
             return state;
     }

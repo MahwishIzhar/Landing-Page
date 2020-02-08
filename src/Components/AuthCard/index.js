@@ -27,7 +27,7 @@ class AuthCard extends React.Component {
     }
 
     _renderSignUp = () => {
-        return <div className='window animated slideInDown' style = {{width: '550px',height: '600px'}} >
+        return <div className='window animated slideInDown' style={{ width: '550px', height: '600px' }} >
             <div className='content'>
                 <div className='welcome'>Hello There!</div>
                 <div className='subtitle'>To get started, please sign-up on Dwork </div>
@@ -50,8 +50,9 @@ class AuthCard extends React.Component {
                         <input type='password' placeholder='Confirm Password' className='input-line full-width'
                             value={this.props.signup_details.confirmPassword} onChange={(e) => this.props.onChangeSignup(e, 'confirmPassword')}></input>
                     </div>
-                   
-<Dropdown options={this.props.accountlist} value={this.props.signup_details.accountType}  onChange={(option) => this.props._onSelect(option)} placeholder="Select an option" />
+
+                    <Dropdown options={this.props.accountlist} value={this.props.signup_details.accountType}
+                        onChange={(option) => this.props._onSelect(option, 'signup')} placeholder="Select account type" />
 
 
                 </div>
@@ -64,11 +65,11 @@ class AuthCard extends React.Component {
     }
 
     _renderSignIn = () => {
-        return <div className='window animated fadeInDown' style={{ height: '450px' ,width: '360px' }}>
+        return <div className='window animated fadeInDown' style={{ height: '500px', width: '360px' }}>
             <div className='content' >
                 <div className='welcome'>Hello There!</div>
                 <div className='subtitle'>Welcome back on Dwork </div>
-                <div className='input-fields'>
+                <div className='input-fields' style={{ paddingRight: '25px' }}>
                     <input type='email' placeholder='Email' className='input-line full-width'
                         value={this.props.login_details.email} onChange={(e) => this.props.onChangeLogin(e, 'email')} ></input>
                     <input type='password' placeholder='Password' className='input-line full-width'
@@ -76,6 +77,8 @@ class AuthCard extends React.Component {
                         onKeyDown={(e) => this._handleKeyDown(e, 'signin')}
                     ></input>
 
+                    <Dropdown options={this.props.accountlist} value={this.props.login_details.accountType}
+                        onChange={(option) => this.props._onSelect(option,'signin')} placeholder="Select account type" />
                 </div>
                 <button className='ghost-round full-width' onClick={() => this.props.onLogin()}>Sign in</button>
                 <div className='subtitle'>Don't have an account?</div>

@@ -7,18 +7,23 @@ import { Route, Link, HashRouter as Router, Switch } from 'react-router-dom'
 import Dashboard from './Components/Dashboard';
 import SigninForm from './Components/SigninForm';
 import ResponsiveDrawer from './Components/ResponsiveDrawer';
+import LoadingOverlay from 'react-loading-overlay';
 
 
 
 
-
-const Routing = () => {
+const Routing = (props) => { 
 
   return (<Router basename="/" >
     <Switch>
+    
       <Route exact path="/" component={Landingpage} />
       <Route exact path="/dwork" component={Landingpage} />
-
+      <LoadingOverlay
+      active={props.Reducer.loading}
+      spinner
+      text='Loading ...'
+      >
       <Dashboard>
         <Route component={({ match }) => {
           return <div style={{height:'100%',width:'100%'}}>
@@ -31,9 +36,15 @@ const Routing = () => {
         }} />
 
       </Dashboard>
+      </LoadingOverlay>
     </Switch>
   </Router>);
 }
 
+const mapStateToProps = (state) => {
+  return state
+}
 
-export default Routing;
+
+export default connect(mapStateToProps, null)(Routing);
+ 

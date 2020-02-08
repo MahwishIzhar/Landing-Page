@@ -3,8 +3,8 @@ import { URL } from "./config"
 
 
 export const Api = {
-    post: ( data, endPoint ) => {
-        fetch(URL+endPoint,{
+    post: ( data, endPoint, success, error ) => {
+        fetch(`${URL}${endPoint}`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -12,11 +12,11 @@ export const Api = {
             body: JSON.stringify(data) 
         })
         .then( response => response.json())
-        .then( result => {
-            console.log(result)
+        .then( result => { 
+            return success( result )
         })
-        .catch( error => {
-            console.log(error);
+        .catch( err => {
+            return error( err ) 
             
         })
     }

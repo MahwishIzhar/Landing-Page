@@ -9,6 +9,9 @@ import ListElements from '../ListElements';
 import AppbarTop from '../AppbarTop';
 import HomePage from '../HomePage';
 import NavbarDrawer from '../NavbarDrawer';
+import Actions from '../../Redux/Actions';
+import { connect } from 'react-redux'
+import ls from 'local-storage'
 
 const drawerWidth = 240;
 
@@ -65,6 +68,13 @@ class ResponsiveDrawer extends React.Component {
     homeOPEN: false,
   };
 
+  componentWillMount(){
+    console.log('******',this.props,ls.get('userInfo'))
+    if( !this.props.Reducer.userInfo ){
+      this.props.history.push('/dwork/signin')
+    }
+  }
+
   handleClick = () => {
     this.setState({ homeOPEN: !this.state.homeOPEN })
     this.setState({ name: '' });
@@ -102,11 +112,20 @@ class ResponsiveDrawer extends React.Component {
     return <Form content={classes.content} toolbar={classes.toolbar}
       inputheight={classes.input} homeOPEN={this.state.homeOPEN}
       name={this.state.name}
-      onsignout={this.props.onsignout} />
+      onsignout={this._onSignOut} />
   }
+ 
+  _onSignOut = () => {
+    // ls.set('userInfo',null)
+    this.props.Clear()
+    this.props.history.push('/dwork/signin')
+  }
+
 
   render() {
     const { classes } = this.props;
+
+
     return ( <div className={classes.root}>
             <CssBaseline />
             <AppbarTop classes={this.props} onClickEvent={this.handleDrawerToggle} />
@@ -118,7 +137,7 @@ class ResponsiveDrawer extends React.Component {
                   {this._renderPageContent()}
                 </div>
                 :
-                <HomePage classes={this.props} onClickEvent={this.props.onsignout} />
+                <HomePage classes={this.props} username={this.props.Reducer.userInfo.username}  _onSignOut={this._onSignOut} />
             }
             }
    </div>
@@ -132,4 +151,18 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+const mapStateToProps = (state) => {
+  return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // Signup: (data, success, error) => dispatch(Actions.Signup(data, success, error)),
+    // Login: (data, success, error) => dispatch(Actions.Login(data, success, error)),
+    Clear: () => dispatch(Actions.Clear())
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: true })(ResponsiveDrawer))
