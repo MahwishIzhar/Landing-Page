@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import Profile from '@material-ui/icons/AccountCircleOutlined';
 import Help from '@material-ui/icons/HelpOutline';
 import AboutUs from '@material-ui/icons/InfoOutlined';
+import WorkOutline from '@material-ui/icons/WorkOutline';
 
 
 
@@ -35,16 +36,17 @@ class ListElements extends React.Component {
                     <Collapse in={this.props.homeOPEN} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <Divider />
-                            {['Profile', 'About Us', 'Help']
+                            {['Profile', 'View & Create Jobs', 'About Us', 'Help']
                                 .map((text, index) => (
                                     <ListItem button key={text}
                                         className={this.props.nested} onClick={() => this.props.clickFunction(text)}>
                                         <ListItemIcon style={{ color: 'white' }}>
                                             {
                                                 (index === 0) ? <Profile />
-                                                    : (index === 1) ? <AboutUs />
-                                                        : (index === 2) ? <Help />
-                                                            : null
+                                                    : (index === 1) ? <WorkOutline />
+                                                        : (index === 2) ? <AboutUs />
+                                                            : (index === 3) ? <Help />
+                                                                : null
                                             }
                                         </ListItemIcon>
                                         <ListItemText primary={text} style={{ color: 'white', fontSize: 8 }} />

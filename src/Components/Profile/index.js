@@ -169,7 +169,5 @@ const mapDispatchToProps = (dispatch) => {
         EditProfile: (data, success, error) => dispatch(Actions.EditProfile(data, success, error)),
     }
 }
-
-
-
+ 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

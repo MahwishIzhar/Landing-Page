@@ -72,6 +72,19 @@ const Actions = {
         }
     },
  
+    GetAllJobs: ( completed, failed) => {
+
+        return dispatch => { 
+            
+            Api.get( '/allJobs', success => { 
+               
+                return completed(success)
+            }, error => {
+                
+                return failed(error)
+            })
+        }
+    },
 
 }
 

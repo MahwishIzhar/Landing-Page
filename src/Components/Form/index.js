@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Profile from '../Profile';
+import Jobs from '../Jobs';
 
 class Form extends Component {
     constructor(props) {
@@ -22,6 +23,9 @@ class Form extends Component {
         
         if(  this.props.name == 'Profile' )
             return <Profile />
+        
+        if( this.props.name == 'View & Create Jobs' )
+            return <Jobs />
     }
 
     render() {

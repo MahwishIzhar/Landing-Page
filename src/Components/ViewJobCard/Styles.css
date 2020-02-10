@@ -1,0 +1,45 @@
+.Container{
+ 
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.RowContainer{
+  display: flex;
+  
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 100%; 
+  /* padding-top: 10px; */
+}
+
+.descriptionContainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  /* padding: 10px; */
+}
+
+.description{ 
+  width: 100%; 
+  word-wrap: break-word; 
+  text-align: center;
+}
+
+.BtnContainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  flex-direction: row;
+  width: 100%; 
+  /* padding-top: 10px; */
+}
+
+.textStyle{
+  color: black;
+  font-weight:500;
+  font-size: 20px;
+} 
