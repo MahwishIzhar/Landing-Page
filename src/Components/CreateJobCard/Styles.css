@@ -12,23 +12,15 @@
   align-items: center;
   flex-direction: row;
   width: 100%; 
-  /* padding-top: 10px; */
+  padding: 10px;
 }
 
-.BottomRowContainer{
+.descContainer{
   display: flex;
-  margin-top: -20px;
-  justify-content: center;
-  align-items: baseline;
+  /* justify-content: space-around;
+  align-items: center; */
   flex-direction: row;
   width: 100%; 
-}
-
-.descriptionContainer{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
   /* padding: 10px; */
 }
 
@@ -44,7 +36,8 @@
   align-items: baseline;
   flex-direction: row;
   width: 100%; 
-  /* padding-top: 10px; */
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .textStyle{

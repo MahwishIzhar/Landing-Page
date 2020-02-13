@@ -51,9 +51,11 @@ class AuthCard extends React.Component {
                             value={this.props.signup_details.confirmPassword} onChange={(e) => this.props.onChangeSignup(e, 'confirmPassword')}></input>
                     </div>
 
-                    <Dropdown options={this.props.accountlist} value={this.props.signup_details.accountType}
-                        onChange={(option) => this.props._onSelect(option, 'signup')} placeholder="Select account type" />
-
+                    <div style={{ display: "flex", flexDirection: "row",marginTop: '5px',
+                    marginBottom: '5px' , paddingLeft: '25px', justifyContent: "center" }}>
+                        <Dropdown options={this.props.accountlist} value={this.props.signup_details.accountType}
+                            onChange={(option) => this.props._onSelect(option, 'signup')} placeholder="Select account type" />
+                    </div>
 
                 </div>
 
@@ -69,16 +71,19 @@ class AuthCard extends React.Component {
             <div className='content' >
                 <div className='welcome'>Hello There!</div>
                 <div className='subtitle'>Welcome back on Dwork </div>
-                <div className='input-fields' style={{ paddingRight: '25px' }}>
-                    <input type='email' placeholder='Email' className='input-line full-width'
+                <div className='input-fields'style={{ paddingRight: '25px' }} >
+                    <input type='email' placeholder='Email' className='input-line full-width' 
                         value={this.props.login_details.email} onChange={(e) => this.props.onChangeLogin(e, 'email')} ></input>
                     <input type='password' placeholder='Password' className='input-line full-width'
                         value={this.props.login_details.password} onChange={(e) => this.props.onChangeLogin(e, 'password')}
                         onKeyDown={(e) => this._handleKeyDown(e, 'signin')}
                     ></input>
 
-                    <Dropdown options={this.props.accountlist} value={this.props.login_details.accountType}
-                        onChange={(option) => this.props._onSelect(option,'signin')} placeholder="Select account type" />
+                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "center",
+                        marginTop: '5px',marginBottom: '5px' , paddingLeft: '25px' }}>
+                        <Dropdown options={this.props.accountlist} value={this.props.login_details.accountType}
+                            onChange={(option) => this.props._onSelect(option, 'signin')} placeholder="Select account type" />
+                    </div>
                 </div>
                 <button className='ghost-round full-width' onClick={() => this.props.onLogin()}>Sign in</button>
                 <div className='subtitle'>Don't have an account?</div>

@@ -3,7 +3,7 @@ import { Api } from "../../API"
 const Actions = {
 
     Signup: (data, completed, failed) => {
-
+        // console.log(data)
         return dispatch => {
             dispatch({ type: 'START_LOADING' })
 
@@ -23,7 +23,7 @@ const Actions = {
     },
 
     Login: (data, completed, failed) => {
-
+// console.log(data)
         return dispatch => {
             dispatch({ type: 'START_LOADING' })
 
@@ -81,6 +81,18 @@ const Actions = {
                 return completed(success)
             }, error => {
                 
+                return failed(error)
+            })
+        }
+    },
+
+    CreateJob: (data, completed, failed) => {
+
+        return dispatch => {  
+            Api.post(data, '/createJob', success => { 
+                
+                return completed(success)
+            }, error => { 
                 return failed(error)
             })
         }
