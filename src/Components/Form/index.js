@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Profile from '../Profile';
 import Jobs from '../Jobs';
+import MyJobs from '../MyJobs';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux'
 
@@ -23,12 +24,15 @@ class Form extends Component {
     };
 
     _renderContent = () => {
-        
-        if(  this.props.name == 'Profile' )
+
+        if (this.props.name == 'Profile')
             return <Profile />
-        
-        if( this.props.name == 'View & Create Jobs' )
+
+        if (this.props.name == 'View & Create Jobs')
             return <Jobs show={this.state.show} toggleShow={this._onToggle} />
+
+        if (this.props.name == 'My Jobs')
+            return <MyJobs />
     }
 
     _onToggle = () => {
@@ -36,34 +40,36 @@ class Form extends Component {
     }
 
     _renderJobButton = () => {
-        if(this.props.Reducer.userInfo.account_type == 'Employer' 
-        && this.props.name == 'View & Create Jobs' ){
+        if (this.props.Reducer.userInfo.account_type == 'Employer'
+            && this.props.name == 'View & Create Jobs') {
             return <Button variant="contained" color="primary" onClick={this._onToggle}
-            style={{height:'10%',marginLeft:'15px',marginTop: '10px'}} >
+                style={{ height: '10%', marginLeft: '15px', marginTop: '10px' }} >
                 {this.state.show ? 'View Jobs' : 'Create Job'}
-                </Button>
+            </Button>
         }
- 
+
     }
 
     render() {
         return (
-            <main style={{paddingTop: '20px'}}  >  
-                        <div style={{display:'flex',flexDirection:'row',
-                        alignItems:'baseline',justifyContent:'space-between', marginTop:'20px'}} >
-                            <div style={{display:'flex', alignItems:'baseline',marginLeft:'10px',flexDirection:'row'}}>
-                            <h3 style={{color: "black",fontWeight:300}}><strong>Home Page / </strong></h3>
-                            <h6 style={{color: "black",fontWeight:400}}>{ this.props.name}</h6>
-                            </div>
-                            {
-                                this._renderJobButton()
-                            }
+            <main style={{ paddingTop: '20px' }}  >
+                <div style={{
+                    display: 'flex', flexDirection: 'row',
+                    alignItems: 'baseline', justifyContent: 'space-between', marginTop: '20px'
+                }} >
+                    <div style={{ display: 'flex', alignItems: 'baseline', marginLeft: '10px', flexDirection: 'row' }}>
+                        <h3 style={{ color: "black", fontWeight: 300 }}><strong>Home Page / </strong></h3>
+                        <h6 style={{ color: "black", fontWeight: 400 }}>{this.props.name}</h6>
+                    </div>
+                    {
+                        this._renderJobButton()
+                    }
 
-                        </div>
-                  
-                        {
-                            this._renderContent()
-                        }
+                </div>
+
+                {
+                    this._renderContent()
+                }
 
             </main>
         );

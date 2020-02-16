@@ -4,9 +4,7 @@ import ViewJobCard from '../ViewJobCard';
 import { Container, Row, Col } from 'react-grid-system';
 import Loader from '../Loader';
 import Actions from '../../Redux/Actions';
-import { connect } from 'react-redux'
-import { TextField, Button } from '@material-ui/core';
-import CreateJobCard from '../CreateJobCard';
+import { connect } from 'react-redux' 
 
 class Jobs extends Component {
 
@@ -20,9 +18,17 @@ class Jobs extends Component {
     }
 
     componentDidMount() {
+      
+       this._reloadJobs()
+    }
+
+    _reloadJobs = () => {
+        let data = {
+            freelancer_email: this.props.Reducer.userInfo.email
+        }
         this.setState({ loading: true })
-        this.props.GetAllJobs(success => {
-            this.setState({ loading: false, allJobs: success.alljobs })
+        this.props.GetAppliedJobs( data, success => {
+            this.setState({ loading: false, allJobs: success.message })
         }, error => {
             this.setState({ loading: false })
         })
@@ -40,7 +46,7 @@ class Jobs extends Component {
                 email: job.email
             }
 
-            return <ViewJobCard jobDetails={_jobDetails}
+            return <ViewJobCard jobDetails={_jobDetails} view='MyJobs' _reloadJobs={this._reloadJobs}
                 toggleLoading={this._toggleLoading} />
         })
     }
@@ -49,43 +55,26 @@ class Jobs extends Component {
     _toggleLoading = () => {
         this.setState({ loading: !this.state.loading })
     }
-
-
-    _renderCreateJobs = () => {
-        return <Row >
-            <Col lg={3} sm={3} md={3}></Col>
-
-            <Col lg={6} sm={6} md={6} >
-                <CreateJobCard toggleLoading={this._toggleLoading} toggleShow={this.props.toggleShow} />
-            </Col>
-
-            <Col lg={3} sm={3} md={3}></Col>
-        </Row>
-
-    }
-
+ 
 
 
     render() {
         return (<Container >
             <Loader loading={this.state.loading} />
             {
+                <Row >
+                    <Col lg={3} sm={3} md={3}></Col>
 
-                this.props.show
-                    ? this._renderCreateJobs()
-                    : <Row >
-                        <Col lg={3} sm={3} md={3}></Col>
+                    <Col lg={6} sm={6} md={6}>
+                        {
+                            this.state.allJobs.length > 0
+                                ? this._renderAlljobs()
+                                : <p style={{ textAlign: 'center' }}>Apply some jobs to see your jobs here</p>
+                        }
+                    </Col>
 
-                        <Col lg={6} sm={6} md={6}>
-                            {
-                                this.state.allJobs.length > 0
-                                    ? this._renderAlljobs()
-                                    : <p style={{ textAlign: 'center' }}>No new jobs</p>
-                            }
-                        </Col>
-
-                        <Col lg={3} sm={3} md={3}></Col>
-                    </Row>
+                    <Col lg={3} sm={3} md={3}></Col>
+                </Row>
 
 
             }
@@ -100,7 +89,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        GetAllJobs: (success, error) => dispatch(Actions.GetAllJobs(success, error)),
+        GetAppliedJobs: (data,success, error) => dispatch(Actions.GetAppliedJobs(data,success, error)),
     }
 }
 

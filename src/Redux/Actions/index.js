@@ -98,6 +98,46 @@ const Actions = {
         }
     },
 
+    applyJob: (data, completed, failed) => {
+
+        return dispatch => {  
+            Api.post(data, '/apply', success => { 
+                
+                return completed(success)
+            }, error => { 
+                return failed(error)
+            })
+        }
+    },
+
+    GetAppliedJobs: (data, completed, failed) => {
+
+        return dispatch => { 
+            
+            Api.post( data, '/appliedJobs', success => { 
+               
+                return completed(success)
+            }, error => {
+                
+                return failed(error)
+            })
+        }
+    },
+
+    startJob: (data, completed, failed) => {
+
+        return dispatch => { 
+            
+            Api.post( data, '/startJob', success => { 
+               
+                return completed(success)
+            }, error => {
+                
+                return failed(error)
+            })
+        }
+    },
+
 }
 
 export default Actions

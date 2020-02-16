@@ -12,7 +12,10 @@ import Profile from '@material-ui/icons/AccountCircleOutlined';
 import Help from '@material-ui/icons/HelpOutline';
 import AboutUs from '@material-ui/icons/InfoOutlined';
 import WorkOutline from '@material-ui/icons/WorkOutline';
+import MyJobs from '@material-ui/icons/Description';
 
+
+import { connect } from 'react-redux'
 
 
 class ListElements extends React.Component {
@@ -36,22 +39,43 @@ class ListElements extends React.Component {
                     <Collapse in={this.props.homeOPEN} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <Divider />
-                            {['Profile', 'View & Create Jobs', 'About Us', 'Help']
-                                .map((text, index) => (
-                                    <ListItem button key={text}
-                                        className={this.props.nested} onClick={() => this.props.clickFunction(text)}>
-                                        <ListItemIcon style={{ color: 'white' }}>
-                                            {
-                                                (index === 0) ? <Profile />
-                                                    : (index === 1) ? <WorkOutline />
-                                                        : (index === 2) ? <AboutUs />
-                                                            : (index === 3) ? <Help />
-                                                                : null
-                                            }
+                            {
+                                this.props.Reducer.userInfo.account_type == 'Freelancer'
+                                    ? ['Profile', 'View & Create Jobs', 'My Jobs', 'About Us', 'Help']
+                                        .map((text, index) => (
+                                            <ListItem button key={text}
+                                                className={this.props.nested} onClick={() => this.props.clickFunction(text)}>
+                                                <ListItemIcon style={{ color: 'white' }}>
+                                                    {
+                                                            (index === 0) ? <Profile />
+                                                            : (index === 1) ? <WorkOutline />
+                                                            : (index === 2) ? <MyJobs />
+                                                            : (index === 3) ? <AboutUs />
+                                                            : (index === 4) ? <Help />
+                                                            : null
+                                }
                                         </ListItemIcon>
-                                        <ListItemText primary={text} style={{ color: 'white', fontSize: 8 }} />
-                                    </ListItem>
-                                ))}
+                                                <ListItemText primary={text} style={{ color: 'white', fontSize: 8 }} />
+                                            </ListItem>
+                                        ))
+
+                                    : ['Profile', 'View & Create Jobs', 'About Us', 'Help']
+                                        .map((text, index) => (
+                                            <ListItem button key={text}
+                                                className={this.props.nested} onClick={() => this.props.clickFunction(text)}>
+                                                <ListItemIcon style={{ color: 'white' }}>
+                                                    {
+                                                        (index === 0) ? <Profile />
+                                                            : (index === 1) ? <WorkOutline />
+                                                                : (index === 2) ? <AboutUs />
+                                                                    : (index === 3) ? <Help />
+                                                                        : null
+                                                    }
+                                                </ListItemIcon>
+                                                <ListItemText primary={text} style={{ color: 'white', fontSize: 8 }} />
+                                            </ListItem>
+                                        ))
+                            }
                             <Divider />
                         </List>
                     </Collapse>
@@ -61,4 +85,11 @@ class ListElements extends React.Component {
     }
 }
 
-export default ListElements;
+
+const mapStateToProps = (state) => {
+    return state
+}
+
+
+
+export default connect(mapStateToProps, null)(ListElements)
