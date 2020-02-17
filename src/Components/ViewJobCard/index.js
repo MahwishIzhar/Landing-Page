@@ -51,12 +51,10 @@ class ViewJobCard extends Component {
         this.props.toggleLoading()
         this.props.startJob(data, success => {
             if (success.status == 'success') {
-                this.props._reloadJobs()
-                ToastsStore.success(success.message)
+                this.props._reloadJobs() 
             }
             else {
-                this.props.toggleLoading()
-                ToastsStore.error(success.message)
+                this.props.toggleLoading() 
             }
         }, error => {
             this.props.toggleLoading()
@@ -67,21 +65,18 @@ class ViewJobCard extends Component {
     _onClickComplete = () => {
         let data = {
             freelancer_email: this.props.Reducer.userInfo.email,
-            employer_email: this.props.jobDetails.email,
-            category: this.props.jobDetails.category,
+            email: this.props.jobDetails.email, 
             job_id: this.props.jobDetails.job_id
         }
 
 
         this.props.toggleLoading()
-        this.props.applyJob(data, success => {
+        this.props.completeJob(data, success => {
             if (success.status == 'success') {
-                this.props.toggleLoading()
-                ToastsStore.success(success.message)
+                this.props._reloadJobs()  
             }
             else {
-                this.props.toggleLoading()
-                ToastsStore.error(success.message)
+                this.props.toggleLoading() 
             }
         }, error => {
             this.props.toggleLoading()
@@ -94,7 +89,7 @@ class ViewJobCard extends Component {
             return <div className="BtnContainer" >
                 <p ><h6 className="textStyle">Posted by: </h6>{this.props.jobDetails.email}</p>
                 {
-                    this.props.jobDetails.status == 'declined' || this.props.jobDetails.status == 'pending' 
+                    this.props.jobDetails.status == 'declined' || this.props.jobDetails.status == 'pending'|| this.props.jobDetails.status == 'done' 
                         ? null
                         : <Button variant="contained" color="primary"
                             onClick={this.props.jobDetails.status == 'accepted' 
@@ -161,6 +156,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         applyJob: (data, success, error) => dispatch(Actions.applyJob(data, success, error)),
         startJob: (data, success, error) => dispatch(Actions.startJob(data, success, error)),
+        completeJob: (data, success, error) => dispatch(Actions.completeJob(data, success, error)),
     }
 }
 

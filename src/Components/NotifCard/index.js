@@ -1,0 +1,159 @@
+import React, { Component } from 'react'
+import './Styles.css'
+import Paper from '@material-ui/core/Paper';
+import { TextField, Button } from '@material-ui/core';
+import { connect } from 'react-redux'
+import Actions from '../../Redux/Actions';
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
+
+class NotifCard extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+        }
+    }
+
+    _onMarkComplete = () => {
+        let data = {
+            freelancer_email: this.props.jobDetails.freelancer_email,
+            email: this.props.Reducer.userInfo.email,
+            job_id: this.props.jobDetails.job_id, 
+        }
+
+
+        this.props.toggleLoading()
+        this.props.markCompleteJob(data, success => {
+            this.props._reloadJobs()
+        }, error => {
+            this.props.toggleLoading()
+            ToastsStore.error(error.message)
+        })
+    }
+
+
+    _onAccept = () => {
+        let data = {
+            freelancer_email: this.props.jobDetails.freelancer_email,
+            employer_email: this.props.Reducer.userInfo.email,
+            job_id: this.props.jobDetails.job_id,
+            notif_id: this.props.jobDetails.notif_id
+        }
+ 
+        this.props.toggleLoading()
+        this.props.acceptJob(data, success => {
+            this.props._reloadJobs()
+        }, error => {
+            this.props.toggleLoading()
+            ToastsStore.error(error.message)
+        })
+    }
+
+    _onDecline = () => {
+        let data = {
+            freelancer_email: this.props.jobDetails.freelancer_email,
+            employer_email: this.props.Reducer.userInfo.email,
+            job_id: this.props.jobDetails.job_id,
+            notif_id: this.props.jobDetails.notif_id
+        }
+ 
+        this.props.toggleLoading()
+        this.props.declineJob(data, success => {
+            this.props._reloadJobs()
+        }, error => {
+            this.props.toggleLoading()
+            ToastsStore.error(error.message)
+        })
+    }
+
+    _renderButtonSection = () => {
+        return <div className="BtnContainer" >
+            <p ><h6 className="textStyle">Posted by: </h6>{this.props.jobDetails.email}</p>
+            {
+                this.props.jobDetails.status == 'pending'
+                    ? this._renderApprovalBtns()
+                    : this.props.jobDetails.status == 'completed'
+                        ? this._renderMarkDoneBtn()
+                        : null
+            }
+
+        </div>
+
+    }
+
+    _renderApprovalBtns = () => {
+        return <div><Button variant="contained" color="primary"
+            onClick={this._onDecline}  >
+            Decline
+                        </Button>
+            <Button variant="contained" color="primary"
+                onClick={this._onAccept}  >
+                Accept
+                    </Button>
+        </div>
+    }
+
+    _renderMarkDoneBtn = () => {
+        return <Button variant="contained" color="primary"
+            onClick={this._onMarkComplete}  >
+            Done
+        </Button>
+
+    }
+
+    render() {
+
+        return (<Paper elevation={3} className="Container" >
+
+            <div className="RowContainer">
+                <p><h6 className="textStyle">Job Request by: </h6>{this.props.jobDetails.freelancer_email}</p>
+
+            </div>
+            <div className="RowContainer">
+                <p>{this.props.jobDetails.message}</p>
+            </div>
+
+
+            <div className="RowContainer">
+                <p><h6 className="textStyle">Category: </h6>{this.props.jobDetails.category}</p>
+                <p><h6 className="textStyle">Budget: </h6>{this.props.jobDetails.budget}</p>
+            </div>
+
+            <div className="RowContainer">
+                <p><h6 className="textStyle">Duration: </h6>{this.props.jobDetails.duration}</p>
+                <p><h6 className="textStyle">{'Status: '}</h6>{this.props.jobDetails.status}</p>
+            </div>
+
+            <div className="descriptionContainer" >
+                <h6 className="textStyle">Description: </h6>
+                <p className="description">{this.props.jobDetails.description}</p>
+            </div>
+
+            {
+                this._renderButtonSection()
+
+            }
+
+
+            <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.BOTTOM_CENTER} />
+        </Paper>
+        )
+    }
+}
+
+
+const mapStateToProps = (state) => {
+    return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        declineJob: (data, success, error) => dispatch(Actions.declineJob(data, success, error)),
+        acceptJob: (data, success, error) => dispatch(Actions.acceptJob(data, success, error)),
+        markCompleteJob: (data, success, error) => dispatch(Actions.markCompleteJob(data, success, error)),
+    }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotifCard)

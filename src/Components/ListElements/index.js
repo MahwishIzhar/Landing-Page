@@ -13,6 +13,8 @@ import Help from '@material-ui/icons/HelpOutline';
 import AboutUs from '@material-ui/icons/InfoOutlined';
 import WorkOutline from '@material-ui/icons/WorkOutline';
 import MyJobs from '@material-ui/icons/Description';
+import Notifications from '@material-ui/icons/NotificationsNone';
+
 
 
 import { connect } from 'react-redux'
@@ -59,7 +61,7 @@ class ListElements extends React.Component {
                                             </ListItem>
                                         ))
 
-                                    : ['Profile', 'View & Create Jobs', 'About Us', 'Help']
+                                    : ['Profile', 'View & Create Jobs', 'Notifications' ,'About Us', 'Help']
                                         .map((text, index) => (
                                             <ListItem button key={text}
                                                 className={this.props.nested} onClick={() => this.props.clickFunction(text)}>
@@ -67,9 +69,10 @@ class ListElements extends React.Component {
                                                     {
                                                         (index === 0) ? <Profile />
                                                             : (index === 1) ? <WorkOutline />
-                                                                : (index === 2) ? <AboutUs />
-                                                                    : (index === 3) ? <Help />
-                                                                        : null
+                                                                : (index === 2) ? <Notifications />
+                                                                    : (index === 3) ? <AboutUs />
+                                                                        : (index === 4) ? <Help />
+                                                                            : null
                                                     }
                                                 </ListItemIcon>
                                                 <ListItemText primary={text} style={{ color: 'white', fontSize: 8 }} />

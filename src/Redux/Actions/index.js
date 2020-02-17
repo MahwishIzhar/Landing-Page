@@ -138,6 +138,76 @@ const Actions = {
         }
     },
 
+    completeJob: (data, completed, failed) => {
+
+        return dispatch => { 
+            
+            Api.post( data, '/completeJob', success => { 
+               
+                return completed(success)
+            }, error => {
+                
+                return failed(error)
+            })
+        }
+    },
+
+    getAllNotifs: (data, completed, failed) => {
+
+        return dispatch => { 
+            
+            Api.post( data, '/notifications', success => { 
+               
+                return completed(success)
+            }, error => {
+                
+                return failed(error)
+            })
+        }
+    },
+
+    declineJob: (data, completed, failed) => {
+
+        return dispatch => { 
+            
+            Api.post( data, '/declineJob', success => { 
+               
+                return completed(success)
+            }, error => {
+                
+                return failed(error)
+            })
+        }
+    },
+
+    acceptJob: (data, completed, failed) => {
+
+        return dispatch => { 
+            
+            Api.post( data, '/acceptJob', success => { 
+               
+                return completed(success)
+            }, error => {
+                
+                return failed(error)
+            })
+        }
+    },
+
+    markCompleteJob: (data, completed, failed) => {
+
+        return dispatch => { 
+            
+            Api.post( data, '/markCompleteJob', success => { 
+               
+                return completed(success)
+            }, error => {
+                
+                return failed(error)
+            })
+        }
+    },
+
 }
 
 export default Actions

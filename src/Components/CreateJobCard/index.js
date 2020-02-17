@@ -77,9 +77,9 @@ class CreateJobCard extends Component {
 
     render() {
 
-        return (<Paper elevation={3} className="Container" >
+        return (<Paper elevation={3} className="Container"   >
 
-            <div className="descriptionContainer" >
+            <div className="descContainer" >
                 <h6 className="textStyle">Create Dwork Job</h6>
             </div>
 
