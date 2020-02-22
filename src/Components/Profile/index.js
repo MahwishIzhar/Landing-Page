@@ -36,7 +36,18 @@ class Profile extends Component {
 
     _updateProfile = () => {
 
-        this.props.EditProfile( this.state.userInfo, success => {
+        let data = {
+            first_name: this.state.userInfo.first_name,
+            last_name: this.state.userInfo.last_name,
+            email: this.state.userInfo.email,
+            username: this.state.userInfo.username,
+            account_type: this.state.userInfo.account_type,
+            accountNo: this.state.userInfo.accountNo == '' 
+            ? this.props.Reducer.metamask_acc != '' ? this.props.Reducer.metamask_acc
+             : this.state.userInfo.accountNo : this.state.userInfo.accountNo 
+        }
+
+        this.props.EditProfile( data, success => {
 
             if (success.status == 'success') {
                 ToastsStore.success(success.message) 
@@ -109,7 +120,10 @@ class Profile extends Component {
 
 
                 <Col lg={3} sm={3} md={3}>
-                    <TextField id="outlined-basic" className="inputStyle" value={this.state.userInfo.accountNo}
+                    <TextField id="outlined-basic" className="inputStyle" 
+                    value={this.state.userInfo.accountNo == '' 
+                    ? this.props.Reducer.metamask_acc != '' ? this.props.Reducer.metamask_acc
+                     : this.state.userInfo.accountNo : this.state.userInfo.accountNo }
                         disabled label="Meta mask ID" variant="outlined" />
                 </Col>
 

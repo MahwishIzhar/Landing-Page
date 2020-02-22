@@ -5,12 +5,56 @@ import { TextField, Button } from '@material-ui/core';
 import { connect } from 'react-redux'
 import Actions from '../../Redux/Actions';
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
+import Web3 from 'web3'
+import { smart_contract_ABI, smart_contract_address } from '../../BlockChain/config'
 
 class ViewJobCard extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
+        }
+    }
+
+    _enableMetaMask = (data, success, error) => {
+        let web3;
+        let that = this
+
+        if (window.ethereum) {
+            web3 = new Web3(window.ethereum);
+            try {
+                window.ethereum.enable().then(function (d) {
+                    // User has allowed account access to DApp...
+                    // console.log('meta mask succ ', d[0])
+                    const dwork = new web3.eth.Contract(smart_contract_ABI, smart_contract_address)
+
+                    dwork.methods.applyJob(data.employer, data.freelancer,data.amount, data.job_id, data.status)
+                    .send({ from: d[0] })
+                    .once('receipt', (receipt) => {
+                        console.log(receipt)
+                        return success(true)
+                })
+
+                  
+                })
+                    .catch(err => { 
+                         console.log('meta mask err 1 ', err)
+                        ToastsStore.error('Meta mask authorization is required !')
+                        return error(false)
+                        
+                    })
+
+            } catch (e) {
+                // User has denied account access to DApp...
+                console.log('meta mask err ', e) 
+                ToastsStore.error('Meta mask authorization is required !')
+                return error(false)
+                
+            }
+        }
+        else {
+            alert('You have to install MetaMask !');
+            return error(false)
         }
     }
 
@@ -23,7 +67,6 @@ class ViewJobCard extends Component {
         }
 
 
-        this.props.toggleLoading()
         this.props.applyJob(data, success => {
             if (success.status == 'success') {
                 this.props.toggleLoading()
@@ -37,35 +80,50 @@ class ViewJobCard extends Component {
             this.props.toggleLoading()
             ToastsStore.error(error.message)
         })
+
+
     }
 
 
     _onClickStart = () => {
         let data = {
             freelancer_email: this.props.Reducer.userInfo.email,
-            email: this.props.jobDetails.email, 
+            email: this.props.jobDetails.email,
             job_id: this.props.jobDetails.job_id
         }
 
+        let blockChain_data = {
+            employer: this.props.jobDetails.email,
+            freelancer:  this.props.Reducer.userInfo.email,
+            amount: this.props.jobDetails.budget,
+            job_id: this.props.jobDetails.job_id,
+            status: "started"
+        }
 
         this.props.toggleLoading()
-        this.props.startJob(data, success => {
-            if (success.status == 'success') {
-                this.props._reloadJobs() 
-            }
-            else {
-                this.props.toggleLoading() 
-            }
-        }, error => {
-            this.props.toggleLoading()
-            ToastsStore.error(error.message)
+        this._enableMetaMask(blockChain_data,completed => {
+            
+            this.props.startJob(data, success => {
+                if (success.status == 'success') {
+                    this.props._reloadJobs()
+                }
+                else {
+                    this.props.toggleLoading()
+                }
+            }, error => {
+                this.props.toggleLoading()
+                ToastsStore.error(error.message)
+            })
+        }, failed => {
+
         })
+
     }
-    
+
     _onClickComplete = () => {
         let data = {
             freelancer_email: this.props.Reducer.userInfo.email,
-            email: this.props.jobDetails.email, 
+            email: this.props.jobDetails.email,
             job_id: this.props.jobDetails.job_id
         }
 
@@ -73,10 +131,10 @@ class ViewJobCard extends Component {
         this.props.toggleLoading()
         this.props.completeJob(data, success => {
             if (success.status == 'success') {
-                this.props._reloadJobs()  
+                this.props._reloadJobs()
             }
             else {
-                this.props.toggleLoading() 
+                this.props.toggleLoading()
             }
         }, error => {
             this.props.toggleLoading()
@@ -89,18 +147,18 @@ class ViewJobCard extends Component {
             return <div className="BtnContainer" >
                 <p ><h6 className="textStyle">Posted by: </h6>{this.props.jobDetails.email}</p>
                 {
-                    this.props.jobDetails.status == 'declined' || this.props.jobDetails.status == 'pending'|| this.props.jobDetails.status == 'done' 
+                    this.props.jobDetails.status == 'declined' || this.props.jobDetails.status == 'pending' || this.props.jobDetails.status == 'done'
                         ? null
                         : <Button variant="contained" color="primary"
-                            onClick={this.props.jobDetails.status == 'accepted' 
-                            ? this._onClickStart : this.props.jobDetails.status == 'started' ? this._onClickComplete
-                            : null    
-                        } 
-                            >
+                            onClick={this.props.jobDetails.status == 'accepted'
+                                ? this._onClickStart : this.props.jobDetails.status == 'started' ? this._onClickComplete
+                                    : null
+                            }
+                        >
 
-                            {this.props.jobDetails.status == 'accepted' ? 'Start' 
-                             : this.props.jobDetails.status == 'started' ? 'Complete' : null }
-                          </Button>
+                            {this.props.jobDetails.status == 'accepted' ? 'Start'
+                                : this.props.jobDetails.status == 'started' ? 'Complete' : null}
+                        </Button>
                 }
 
             </div>

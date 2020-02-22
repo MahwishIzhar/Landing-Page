@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     loading: false,
-    userInfo: null
+    userInfo: null,
+    metamask_acc: ''
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -23,8 +24,12 @@ export const reducer = (state = INITIAL_STATE, action) => {
             return { ...state, userInfo: action.payload }
         }
 
+        case 'UPDATE_META_MASK': {
+            return { ...state, metamask_acc: action.payload }
+        }
+
         case 'CLEAR': {
-            return { ...state, userInfo: null, loading: false }
+            return { ...state, userInfo: null, loading: false, metamask_acc: '' }
         }
 
         default:

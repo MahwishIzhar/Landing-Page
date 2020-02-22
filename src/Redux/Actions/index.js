@@ -46,6 +46,14 @@ const Actions = {
         }
     },
 
+    Update_Metamask: ( accountNo ) => {
+        return dispatch => {
+            dispatch({ type: 'UPDATE_META_MASK', payload: accountNo })
+
+
+        }
+    },
+
     EditProfile: (data, completed, failed) => {
 
         return dispatch => {

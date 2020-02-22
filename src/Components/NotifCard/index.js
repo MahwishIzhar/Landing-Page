@@ -5,12 +5,56 @@ import { TextField, Button } from '@material-ui/core';
 import { connect } from 'react-redux'
 import Actions from '../../Redux/Actions';
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
+import Web3 from 'web3'
+import { smart_contract_ABI, smart_contract_address } from '../../BlockChain/config'
 
 class NotifCard extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
+        }
+    }
+
+    _enableMetaMask = (data, success, error) => {
+        let web3;
+        let that = this
+
+        if (window.ethereum) {
+            web3 = new Web3(window.ethereum);
+            try {
+                window.ethereum.enable().then(function (d) {
+                    // User has allowed account access to DApp...
+                    // console.log('meta mask succ ', d[0])
+                    const dwork = new web3.eth.Contract(smart_contract_ABI, smart_contract_address)
+
+                    dwork.methods.completeJob(data)
+                    .send({ from: d[0] })
+                    .once('receipt', (receipt) => {
+                        console.log(receipt)
+                        return success(true)
+                })
+
+                  
+                })
+                    .catch(err => { 
+                         console.log('meta mask err 1 ', err)
+                        ToastsStore.error('Meta mask authorization is required !')
+                        return error(false)
+                        
+                    })
+
+            } catch (e) {
+                // User has denied account access to DApp...
+                console.log('meta mask err ', e) 
+                ToastsStore.error('Meta mask authorization is required !')
+                return error(false)
+                
+            }
+        }
+        else {
+            alert('You have to install MetaMask !');
+            return error(false)
         }
     }
 
@@ -21,14 +65,20 @@ class NotifCard extends Component {
             job_id: this.props.jobDetails.job_id, 
         }
 
-
         this.props.toggleLoading()
-        this.props.markCompleteJob(data, success => {
-            this.props._reloadJobs()
-        }, error => {
-            this.props.toggleLoading()
-            ToastsStore.error(error.message)
+        this._enableMetaMask(data.job_id,completed => {
+           
+            this.props.markCompleteJob(data, success => {
+                this.props._reloadJobs()
+            }, error => {
+                this.props.toggleLoading()
+                ToastsStore.error(error.message)
+            })
+        }, failed => {
+
         })
+
+      
     }
 
 

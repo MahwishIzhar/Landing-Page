@@ -12,6 +12,9 @@ import NavbarDrawer from '../NavbarDrawer';
 import Actions from '../../Redux/Actions';
 import { connect } from 'react-redux'
 import ls from 'local-storage'
+import Web3 from 'web3'
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
+ 
 
 const drawerWidth = 240;
 
@@ -68,13 +71,41 @@ class ResponsiveDrawer extends React.Component {
     homeOPEN: false,
   };
 
-  componentWillMount(){
-    
-    if( !this.props.Reducer.userInfo ){
+  componentWillMount() {
+
+    if (!this.props.Reducer.userInfo) {
       this.props.history.push('/dwork/signin')
     }
   }
- 
+
+_enableMetaMask = () => {
+  let web3;
+    let that = this
+
+    if (window.ethereum) {
+      web3 = new Web3(window.ethereum);
+      try {
+        window.ethereum.enable().then(function (d) {
+          // User has allowed account access to DApp...
+          // console.log('meta mask succ ', d[0])
+         that.props.Update_Metamask(d[0])
+         ToastsStore.success('Meta mask authorized successfully')
+        })
+        .catch(err => {
+          ToastsStore.error('Meta mask authorization is required !')
+          // console.log('meta mask err 1 ', err)
+        })
+        
+      } catch (e) {
+        // User has denied account access to DApp...
+        ToastsStore.error('Meta mask authorization is required !')
+        // console.log('meta mask err ', e) 
+      }
+    } 
+    else {
+      alert('You have to install MetaMask !');
+    }
+}
 
   handleClick = () => {
     this.setState({ homeOPEN: !this.state.homeOPEN })
@@ -110,11 +141,11 @@ class ResponsiveDrawer extends React.Component {
 
     const { classes } = this.props;
 
-    return <Form   inputheight={classes.input} homeOPEN={this.state.homeOPEN}
-          name={this.state.name}
-          onsignout={this._onSignOut} />
+    return <Form inputheight={classes.input} homeOPEN={this.state.homeOPEN}
+      name={this.state.name}
+      onsignout={this._onSignOut} />
   }
- 
+
   _onSignOut = () => {
     // ls.set('userInfo',null)
     this.props.Clear()
@@ -126,18 +157,23 @@ class ResponsiveDrawer extends React.Component {
     const { classes } = this.props;
 
 
-    return ( <div className={classes.root}>
-            <CssBaseline />
-            <AppbarTop classes={this.props} onClickEvent={this.handleDrawerToggle} />
-            <NavbarDrawer classes={this.props} Container={this.props.container} openState={this.state.mobileOpen} onCloseDrawer={this.handleDrawerToggle}
-              renderDrawer={this._renderDrawerContents} />
-            {
-              this.state.name !== ''
-                ?  this._renderPageContent() 
-                :
-                <HomePage classes={this.props} username={this.props.Reducer.userInfo.username}  _onSignOut={this._onSignOut} />
-            }
-            }
+    return (<div className={classes.root}>
+        <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.BOTTOM_CENTER} />
+ 
+      <CssBaseline />
+      <AppbarTop classes={this.props} onClickEvent={this.handleDrawerToggle} />
+      <NavbarDrawer classes={this.props} Container={this.props.container} openState={this.state.mobileOpen} onCloseDrawer={this.handleDrawerToggle}
+        renderDrawer={this._renderDrawerContents} />
+      {
+        this.state.name !== ''
+          ? this._renderPageContent()
+          :
+          <HomePage classes={this.props} username={this.props.Reducer.userInfo.username} 
+          _onSignOut={this._onSignOut} _enableMetaMask={this._enableMetaMask} />
+      }
+      }
+
+    
    </div>
     );
   }
@@ -154,8 +190,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { 
-    Clear: () => dispatch(Actions.Clear())
+  return {
+    Clear: () => dispatch(Actions.Clear()),
+    Update_Metamask: (accountNo) => dispatch(Actions.Update_Metamask(accountNo))
   }
 }
 

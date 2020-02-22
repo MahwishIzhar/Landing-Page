@@ -6,6 +6,10 @@ const HomePage = (props) => {
   return (
     <main  style={{paddingTop:'20px'}}> 
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end',marginTop:'50px' }}>
+      <p onClick={()=>props._enableMetaMask()}
+          style={{ color: 'black', textDecoration: 'underline', cursor: 'pointer', marginRight:'20px',fontWeight: 200 }}>
+            <strong>Enable Metamask</strong></p>
+
         <p onClick={()=>props._onSignOut()}
           style={{ color: 'black', textDecoration: 'underline', cursor: 'pointer', fontWeight: 200 }}>
             <strong>Sign Out</strong></p>
