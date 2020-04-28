@@ -118,7 +118,7 @@ class NotifCard extends Component {
 
     _renderButtonSection = () => {
         return <div className="BtnContainer" >
-            <p ><h6 className="textStyle">Posted by: </h6>{this.props.jobDetails.email}</p>
+            <p ><h6 className="textStyle" >Posted by: </h6>{this.props.jobDetails.email}</p>
             {
                 this.props.jobDetails.status == 'pending'
                     ? this._renderApprovalBtns()
@@ -133,7 +133,7 @@ class NotifCard extends Component {
 
     _renderApprovalBtns = () => {
         return <div><Button variant="contained" color="primary"
-            onClick={this._onDecline}  >
+            onClick={this._onDecline} style={{marginRight: '7px'}} >
             Decline
                         </Button>
             <Button variant="contained" color="primary"

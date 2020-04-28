@@ -28,28 +28,28 @@ class ViewJobCard extends Component {
                     // console.log('meta mask succ ', d[0])
                     const dwork = new web3.eth.Contract(smart_contract_ABI, smart_contract_address)
 
-                    dwork.methods.applyJob(data.employer, data.freelancer,data.amount, data.job_id, data.status)
-                    .send({ from: d[0] })
-                    .once('receipt', (receipt) => {
-                        console.log(receipt)
-                        return success(true)
-                })
+                    dwork.methods.applyJob(data.employer, data.freelancer, data.amount, data.job_id, data.status)
+                        .send({ from: d[0] })
+                        .once('receipt', (receipt) => {
+                            console.log(receipt)
+                            return success(true)
+                        })
 
-                  
+
                 })
-                    .catch(err => { 
-                         console.log('meta mask err 1 ', err)
+                    .catch(err => {
+                        console.log('meta mask err 1 ', err)
                         ToastsStore.error('Meta mask authorization is required !')
                         return error(false)
-                        
+
                     })
 
             } catch (e) {
                 // User has denied account access to DApp...
-                console.log('meta mask err ', e) 
+                console.log('meta mask err ', e)
                 ToastsStore.error('Meta mask authorization is required !')
                 return error(false)
-                
+
             }
         }
         else {
@@ -94,15 +94,15 @@ class ViewJobCard extends Component {
 
         let blockChain_data = {
             employer: this.props.jobDetails.email,
-            freelancer:  this.props.Reducer.userInfo.email,
+            freelancer: this.props.Reducer.userInfo.email,
             amount: this.props.jobDetails.budget,
             job_id: this.props.jobDetails.job_id,
             status: "started"
         }
 
         this.props.toggleLoading()
-        this._enableMetaMask(blockChain_data,completed => {
-            
+        this._enableMetaMask(blockChain_data, completed => {
+
             this.props.startJob(data, success => {
                 if (success.status == 'success') {
                     this.props._reloadJobs()
@@ -191,10 +191,18 @@ class ViewJobCard extends Component {
             </div>
 
             {
+
+
                 this.props.Reducer.userInfo.account_type == 'Freelancer'
                     ? this._renderButtonSection()
                     : <div className="RowContainer" >
-                        <p className="BottomRowContainer"><h6 className="textStyle" >Posted by: </h6> {this.props.jobDetails.email}</p>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}>
+                            <h6 className="textStyle" style={{marginRight: '4px'}} >Posted by: </h6> {this.props.jobDetails.email}</div>
                     </div>
             }
 

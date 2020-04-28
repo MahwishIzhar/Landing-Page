@@ -13,16 +13,16 @@
   flex-direction: row;
   width: 100%; 
   margin-top: -20px;
-  margin-bottom: -20px;
+  margin-bottom: -20px; 
   /* padding-top: 10px; */
 }
 
 .BottomRowContainer{
-  display: flex;
-  margin-top: -20px;
-  justify-content: center;
-  align-items: baseline;
-  flex-direction: row;
+  /* display: flex; */
+  /* margin-top: -20px; */
+  /* justify-content: center; */
+  /* align-items: baseline; */
+  /* flex-direction: row; */
   width: 100%; 
 }
 

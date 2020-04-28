@@ -28,13 +28,18 @@ class Jobs extends Component {
         }
         this.setState({ loading: true })
         this.props.GetAppliedJobs( data, success => {
+            if(success.status == 'success')
             this.setState({ loading: false, allJobs: success.message })
+            else
+            this.setState({loading: false})
         }, error => {
             this.setState({ loading: false })
         })
     }
 
     _renderAlljobs = () => {
+
+        // console.log('jobsss ',this.state.allJobs)
         return this.state.allJobs.map((job, index) => {
             let _jobDetails = {
                 duration: job.duration,

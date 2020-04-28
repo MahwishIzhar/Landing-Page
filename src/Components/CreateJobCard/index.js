@@ -95,16 +95,18 @@ class CreateJobCard extends Component {
                 <TextField id="outlined-basic" className="inputStyle" value={this.state.jobFields.duration}
                     label="Duration" variant="outlined" placeholder="2 months"
                     onChange={(e) => this._onChange(e.target.value, 'duration')}
-                    style={{ marginRight: '15px' }}
+                    style={{ marginRight: '15px', marginTop: '20px' }}
                 />
 
                 <TextField id="outlined-basic" className="inputStyle" value={this.state.jobFields.budget}
                     label="Budget" variant="outlined" disabled={this.state.disabled} placeholder="50$"
-                    onChange={(e) => this._onChange(e.target.value, 'budget')} />
+                    onChange={(e) => this._onChange(e.target.value, 'budget')}
+                    style={{ marginTop: '20px' }}
+                    />
             </div>
 
 
-            <div className="RowContainer">
+            <div className="RowContainer" style={{marginTop: '5px'}}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Select a category</InputLabel>
                     <Select
@@ -120,7 +122,9 @@ class CreateJobCard extends Component {
 
             </div>
 
-            <div className="BtnContainer" >
+            <div className="BtnContainer" style={{
+                marginTop: '10px'
+            }}>
                 <Button variant="contained" color="primary" onClick={this._handleCreateJob} >Create Job</Button>
             </div>
 
