@@ -76,6 +76,10 @@ class ResponsiveDrawer extends React.Component {
     if (!this.props.Reducer.userInfo) {
       this.props.history.push('/dwork/signin')
     }
+
+    if (this.props.Reducer.userInfo == null) {
+      this.props.history.push('/dwork/signin')
+    }
   }
 
 _enableMetaMask = () => {

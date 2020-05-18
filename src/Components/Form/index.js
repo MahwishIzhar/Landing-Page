@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Typography from '@material-ui/core/Typography';
+import Help from '../Help';
 import Profile from '../Profile';
 import Jobs from '../Jobs';
 import MyJobs from '../MyJobs';
+import AboutUs from '../AboutUs';
 import Notifications from '../Notifications';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux'
@@ -37,6 +38,12 @@ class Form extends Component {
 
         if (this.props.name == 'Notifications')
             return <Notifications />
+
+        if (this.props.name == 'Help')
+            return <Help />
+
+        if (this.props.name == 'About Us')
+            return <AboutUs />
     }
 
     _onToggle = () => {
